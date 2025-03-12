@@ -1,0 +1,43 @@
+.navbar{
+    background-color:gainsboro;
+    color: white;
+
+}
+.nav-link{
+    color: white;
+    background-color:black;
+    
+    border-radius: 5px;
+    padding: 10px;
+    letter-spacing: 0.2rem;
+
+
+
+
+}
+.nn{
+    justify-content: space-between;
+
+}
+.in{
+    color: white;
+
+}
+.active{
+    color: white;
+}
+body{
+   background-image: url(images/aa.jpg);
+    background-attachment: fixed;
+   
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+}
+.nav-link:hover{
+    background-color: transparent;
+}
+
+
+
+

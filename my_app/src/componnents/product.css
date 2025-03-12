@@ -1,0 +1,7 @@
+.po{
+    background-image: url(../images/pro.jpg);
+    background-repeat: no-repeat;
+    background: width 100px;
+    background-size: cover; 
+    border-radius: 12px;
+}

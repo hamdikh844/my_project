@@ -1,0 +1,12 @@
+.co{
+    background-image: url(../images/cont.jpg);
+    background-size: cover;
+    background-repeat:no-repeat;
+    background: hieght 100px;
+}
+.gge{
+    border-radius: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    box-shadow: inset;
+}
