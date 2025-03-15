@@ -22,9 +22,7 @@ const Foote = () => {
             </li>
             <br>
             </br>
-            <li className="nav-item  list-unstyled">
-              <Link className="nav-link bg-success  " to="/contact">CONTACT</Link>
-            </li>
+          
         </div>
 
        

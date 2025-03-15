@@ -19,13 +19,13 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    
+    // Check if passwords match
     if (Password !== ConfirmPassword) {
       setErrorMessage('Passwords do not match');
       return;
     }
 
-   
+    // Submit form data
     axios.post('http://localhost:5000/Registre', { Username, Email, Password, Phone, Cin, Birthday })
       .then(result => {
         console.log(result);
@@ -43,118 +43,117 @@ const Register = () => {
   };
 
   return (
-    <div className="container nb text-dark bg-light ll ">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <h2 className="text-center my-4">Sign Up</h2>
-          <form id="signupForm" onSubmit={handleSubmit}>
-           
-            <div className="mb-3">
+    <div className="container-fluid d-flex justify-content-center align-items-center vh-100 bg-light">
+      <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '600px' }}>
+        <h2 className="text-center mb-4 text-primary">Sign Up</h2>
+        <form id="signupForm" onSubmit={handleSubmit}>
+          {/* Username and Date of Birth in one row */}
+          <div className="row">
+            <div className="col-md-6 mb-3">
               <label htmlFor="username" className="form-label">Username</label>
               <input
                 type="text"
-                className="form-control bg-light"
+                className="form-control"
                 id="username"
                 value={Username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
               />
             </div>
-
-          
-            <div className="mb-3">
-              <label htmlFor="Date" className="form-label">Date of Birth</label>
+            <div className="col-md-6 mb-3">
+              <label htmlFor="birthday" className="form-label">Date of Birth</label>
               <input
                 type="date"
-                className="form-control bg-light"
+                className="form-control"
                 id="birthday"
                 value={Birthday}
                 onChange={(e) => setBirthday(e.target.value)}
                 required
               />
             </div>
+          </div>
 
-            <div className="mb-3">
+          {/* Email and CIN in one row */}
+          <div className="row">
+            <div className="col-md-6 mb-3">
               <label htmlFor="email" className="form-label">Email Address</label>
               <input
                 type="email"
-                className="form-control bg-light"
+                className="form-control"
                 id="email"
                 value={Email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
-
-            <div className="mb-3">
+            <div className="col-md-6 mb-3">
               <label htmlFor="CIN" className="form-label">CIN</label>
               <input
                 type="number"
-                className="form-control bg-light"
+                className="form-control"
                 id="CIN"
                 value={Cin}
                 onChange={(e) => setCin(e.target.value)}
                 required
               />
             </div>
+          </div>
 
-           
-            <div className="mb-3">
-              <label htmlFor="phone" className="form-label">Phone Number</label>
-              <input
-                type="tel"
-                className="form-control bg-light"
-                id="phone"
-                value={Phone}
-                onChange={(e) => setPhone(e.target.value)}
-                required
-              />
-            </div>
+          {/* Phone Number */}
+          <div className="mb-3">
+            <label htmlFor="phone" className="form-label">Phone Number</label>
+            <input
+              type="tel"
+              className="form-control"
+              id="phone"
+              value={Phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
 
-           
-            <div className="mb-3">
+          {/* Password and Confirm Password in one row */}
+          <div className="row">
+            <div className="col-md-6 mb-3">
               <label htmlFor="password" className="form-label">Password</label>
               <input
                 type="password"
-                className="form-control bg-light"
+                className="form-control"
                 id="password"
                 value={Password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
-
-       
-            <div className="mb-3">
+            <div className="col-md-6 mb-3">
               <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
               <input
                 type="password"
-                className="form-control bg-light"
+                className="form-control"
                 id="confirmPassword"
                 value={ConfirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
             </div>
+          </div>
 
-           
-            {ErrorMessage && <div className="alert alert-danger">{ErrorMessage}</div>}
+          {/* Error Message */}
+          {ErrorMessage && <div className="alert alert-danger">{ErrorMessage}</div>}
 
-          
-            {Message && <div className="alert alert-success">{Message}</div>}
+          {/* Success Message */}
+          {Message && <div className="alert alert-success">{Message}</div>}
 
-            <div className="row">
-              <div className="col">
-                <button type="submit" className="btn btn-primary w-100">Register</button>
-              </div>
-            </div>
+          {/* Register Button */}
+          <div className="mb-3">
+            <button type="submit" className="btn btn-primary w-100">Register</button>
+          </div>
 
-            {/* Login link */}
-            <div className="row text-primary text-center">
-              <p className='text-dark'>Already have an account?</p> <Link className="nav-link btn bg-primary" to="/Singin">Login</Link>
-            </div>
-          </form>
-        </div>
+          {/* Login Link */}
+          <div className="text-center">
+            <p className="text-muted">Already have an account? <Link to="/Singin" className="text-primary">Login</Link></p>
+          </div>
+        </form>
       </div>
     </div>
   );

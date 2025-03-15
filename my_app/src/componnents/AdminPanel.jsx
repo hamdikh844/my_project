@@ -151,6 +151,7 @@ const AdminPanel = () => {
           </tbody>
         </table>
         <Link className="btn btn-outline-warning" to="/orders">OrdersList</Link>
+        <Link className="btn btn-outline-warning" to="/ProductList">product-list</Link>
       </div>
     </div>
   );

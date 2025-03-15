@@ -8,34 +8,40 @@ const Singin = () => {
   const [Password, setPassword] = useState('');
   const [ErrorMessage, setErrorMessage] = useState('');
   const [Message, setMessage] = useState('');
+  const [Loading, setLoading] = useState(false); // Loading state
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
+    setErrorMessage(''); // Clear previous error messages
+    setMessage(''); // Clear previous success messages
 
-    axios
-      .post('http://localhost:5000/login', { Email, Password })
-      .then((response) => {
-        console.log(response);
-        setMessage('Login Successful!');
-        setErrorMessage('');
-
-        
-        if (Email === 'hamdi@gmail.com' && Password === 'hamdi1*2=3') {
-          
-          navigate('/Signin/AdminPanel');
-        } else {
-          
-          navigate("/Product");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.response && error.response.data) {
-          setErrorMessage(error.response.data.message);
-        }
-        setMessage('');
+    try {
+      const response = await axios.post('http://localhost:5000/login', {
+        Email: Email.trim(), // Trim email
+        Password: Password.trim(), // Trim password
       });
+
+      console.log('Login Response:', response.data);
+      setMessage('Login Successful!');
+
+      // Redirect based on user role (handled by backend)
+      if (response.data.role === 'admin') {
+        navigate('/Signin/AdminPanel');
+      } else {
+        navigate('/Product');
+      }
+    } catch (error) {
+      console.error('Login Error:', error);
+      if (error.response && error.response.data) {
+        setErrorMessage(error.response.data.message || 'An error occurred during login.');
+      } else {
+        setErrorMessage('An error occurred during login.');
+      }
+    } finally {
+      setLoading(false); // Stop loading
+    }
   };
 
   return (
@@ -54,7 +60,10 @@ const Singin = () => {
                 className="form-control w-100"
                 placeholder="Enter your email"
                 value={Email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setErrorMessage(''); // Clear error message when typing
+                }}
                 required
               />
             </div>
@@ -71,7 +80,10 @@ const Singin = () => {
                 className="form-control"
                 placeholder="Enter your password"
                 value={Password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setErrorMessage(''); // Clear error message when typing
+                }}
                 required
               />
             </div>
@@ -80,8 +92,8 @@ const Singin = () => {
           {ErrorMessage && <div className="alert alert-danger">{ErrorMessage}</div>}
           {Message && <div className="alert alert-success">{Message}</div>}
 
-          <button type="submit" className="btn btn-primary w-100">
-            Sign In
+          <button type="submit" className="btn btn-primary w-100" disabled={Loading}>
+            {Loading ? 'Logging in...' : 'Sign In'}
           </button>
         </form>
       </div>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -8,7 +7,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Fetch products when the component mounts
+  // Fetch accepted products when the component mounts
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -16,7 +15,8 @@ const Home = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/product');
+      // Fetch only accepted products
+      const response = await axios.get('http://localhost:5000/product?accepted=true');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);

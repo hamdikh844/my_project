@@ -12,7 +12,7 @@ import Foote from "./componnents/Foote";
 
 
 
-import SERVICES from "./componnents/SERVICES";
+import Service from "./componnents/Service";
 
 import Register from "./componnents/Register";
 
@@ -22,6 +22,8 @@ import Command from "./componnents/Command";
 import AdminPanel from "./componnents/AdminPanel";
 import ProductDetail from "./componnents/ProductDetail";
 import OrdersList from "./componnents/OrdersList";
+import ProductList from "./componnents/ProductList";
+import About from "./componnents/About";
 
 
 
@@ -41,7 +43,7 @@ function App() {
      <Routes>
       <Route path="/Register" element={<Register/>}/>
       <Route path="/" exact element={<Home/>}/>
-      <Route path="/SERVICES" element={<SERVICES/>}/>
+      <Route path="/Service" element={<Service/>}/>
       
       <Route path="/Singin" element={<Singin/>}/>
       <Route path="/Product" element={<Product/>}/>
@@ -49,15 +51,8 @@ function App() {
       <Route path="/Signin/AdminPanel" element={<AdminPanel />}/>
       <Route path="/Product/:id" element={<ProductDetail/>}/>
       <Route path="/Orders" element={<OrdersList/>}/>
-     
-
-
-
-
-      
-    
-      
-
+      <Route path="/ProductList" element={<ProductList/>}/>
+      <Route path="/About" element={<About/>}/>
      </Routes>
      <Foote/>
     
